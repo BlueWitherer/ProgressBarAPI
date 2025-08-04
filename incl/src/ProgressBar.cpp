@@ -39,6 +39,14 @@ bool ProgressBar::init() {
     };
 };
 
+void ProgressBar::setBarColor(ccColor3B color) {
+    if (auto gm = GameManager::sharedState()) {
+        auto forcePlayer = m_mod->getSettingValue<bool>("force-color");
+
+        if (m_progressBarFill) m_progressBarFill->setColor(forcePlayer ? gm->colorForIdx(gm->getPlayerColor2()) : color);
+    };
+};
+
 void ProgressBar::updateBar(float value, float time) {
     if (value > 100.f) value = 100.f;
     if (value < 0.f) value = 0.f;
@@ -52,14 +60,6 @@ void ProgressBar::updateBar(float value, float time) {
         log::debug("Updating progress bar fill size to {}", width);
 
         m_progressBarFill->setTextureRect({ 0.f, 0.f, width, 8.f });
-    };
-};
-
-void ProgressBar::setBarColor(ccColor3B color) {
-    if (auto gm = GameManager::sharedState()) {
-        auto forcePlayer = m_mod->getSettingValue<bool>("force-color");
-
-        if (m_progressBarFill) m_progressBarFill->setColor(forcePlayer ? gm->colorForIdx(gm->getPlayerColor2()) : color);
     };
 };
 

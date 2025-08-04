@@ -22,6 +22,21 @@ This mod has an API that other mod developers can use to easily create customiza
 
 ---
 
+### API
+Here's some basic information on the classes that this mod provides. You can find more information and code examples on the class and its fields & methods in the header file or README inside the API's folder.
+
+##### `ProgressBar` Class
+```cpp
+static ProgressBar* create(); // Create the custom progress bar
+
+void setBarColor(ccColor3B color); // Set the color of the fill of the bar
+void updateBar(float value, float time = 0.f); // Update the fill of the bar
+
+float getProgress(); // Get the current progress of the bar
+```
+
+---
+
 ### Changelog
 ###### What's new?!
 **[📜 View the latest updates and patches](./changelog.md)**
