@@ -35,7 +35,7 @@
 		"level": {
 			"type": "bool",
 			"name": "Modify Level Progress Bar",
-			"description": "Use this mod's own progress bar in levels.",
+			"description": "Use this mod's own progress bar in levels. <cr>You must rejoin the level to take full effect.</cr>",
 			"default": true
 		},
 		"force-color": {

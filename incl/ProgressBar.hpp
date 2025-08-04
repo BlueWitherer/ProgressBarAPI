@@ -32,9 +32,8 @@ public:
      * Update the fill of the bar
      *
      * @param value An integer from 0 to 100
-     * @param time Optional animation time
      */
-    void updateBar(float value, float time = 0.f);
+    void updateBar(float value);
 
     /**
      * Get the current progress of the bar

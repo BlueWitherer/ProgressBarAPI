@@ -27,7 +27,7 @@ bool ProgressBar::init() {
         m_progressBarFill->setPosition({ 2.f, m_progressBar->getScaledContentHeight() / 2.f });
         m_progressBarFill->setZOrder(-1);
 
-        updateBar(0.f, 0.f);
+        updateBar(0.f);
 
         m_progressBar->addChild(m_progressBarFill);
 
@@ -47,7 +47,7 @@ void ProgressBar::setBarColor(ccColor3B color) {
     };
 };
 
-void ProgressBar::updateBar(float value, float time) {
+void ProgressBar::updateBar(float value) {
     if (value > 100.f) value = 100.f;
     if (value < 0.f) value = 0.f;
 
