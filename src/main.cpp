@@ -28,6 +28,7 @@ class $modify(ProgressAPIPlayLayer, PlayLayer) {
                         topMenu->setID("menu"_spr);
                         topMenu->setScaledContentSize({ 0.f, 16.f });
                         topMenu->setPosition({ getScaledContentWidth() / 2.f, getScaledContentHeight() - 8.f });
+                        topMenu->setZOrder(101);
 
                         // the layout for the menu
                         auto topMenuLayout = RowLayout::create()
@@ -45,7 +46,7 @@ class $modify(ProgressAPIPlayLayer, PlayLayer) {
                         m_fields->m_apiProgressBar = ProgressBar::create();
                         m_fields->m_apiProgressBar->setID("my-progress-bar"_spr);
                         m_fields->m_apiProgressBar->setBarColor({ 100, 255, 125 });
-                        m_fields->m_apiProgressBar->setZOrder(101);
+                        m_fields->m_apiProgressBar->setVisible(ogProgressBar->isVisible());
 
                         topMenu->addChild(m_fields->m_apiProgressBar);
 
@@ -84,13 +85,7 @@ class $modify(ProgressAPIPlayLayer, PlayLayer) {
     };
 
     void toggleProgressbar() {
-        if (m_fields->m_apiProgressBar) {
-            m_fields->m_apiProgressBar->setVisible(!m_fields->m_apiProgressBar->isVisible());
-            m_fields->m_apiProgressBar->setZOrder(101);
-        } else {
-            log::error("Couldn't toggle API progress bar");
-        };
-
+        if (m_fields->m_apiProgressBar) m_fields->m_apiProgressBar->setVisible(!m_fields->m_apiProgressBar->isVisible());
         PlayLayer::toggleProgressbar();
     };
 };
