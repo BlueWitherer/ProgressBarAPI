@@ -12,7 +12,8 @@
 	"developer": "Cheeseworks",
 	"description": "For mods to easily create progress bars.",
 	"tags": [
-		"developer"
+		"developer",
+		"offline"
 	],
 	"dependencies": {
 		"geode.node-ids": {

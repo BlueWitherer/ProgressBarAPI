@@ -25,8 +25,9 @@ bool ProgressBar::init() {
         m_progressBarFill->setID("bar-fill");
         m_progressBarFill->setAnchorPoint({ 0, 0.5 });
         m_progressBarFill->setPosition({ 2.f, m_progressBar->getScaledContentHeight() / 2.f });
-        m_progressBarFill->setTextureRect({ 0, 0, 0, 8 });
         m_progressBarFill->setZOrder(-1);
+
+        updateBar(0.f, 0.f);
 
         m_progressBar->addChild(m_progressBarFill);
 
@@ -39,17 +40,18 @@ bool ProgressBar::init() {
 };
 
 void ProgressBar::updateBar(float value, float time) {
-    if (value <= 100.f && value >= 0.f) {
-        if (m_progressBar && m_progressBarFill) {
-            float max = m_progressBar->getScaledContentWidth() - 4.f;
-            float width = max * (value / 100.f);
+    if (value > 100.f) value = 100.f;
+    if (value < 0.f) value = 0.f;
 
-            log::debug("Updating progress bar fill size to {}", width);
+    m_progress = value;
 
-            m_progressBarFill->setTextureRect({ 0, 0, width, 8 });
-        };
-    } else {
-        log::error("Cannot set fill to {}%", value);
+    if (m_progressBar && m_progressBarFill) {
+        float max = m_progressBar->getScaledContentWidth() - 4.f;
+        float width = max * (m_progress / 100.f);
+
+        log::debug("Updating progress bar fill size to {}", width);
+
+        m_progressBarFill->setTextureRect({ 0.f, 0.f, width, 8.f });
     };
 };
 
@@ -57,8 +59,12 @@ void ProgressBar::setBarColor(ccColor3B color) {
     if (auto gm = GameManager::sharedState()) {
         auto forcePlayer = m_mod->getSettingValue<bool>("force-color");
 
-        if (m_progressBarFill) m_progressBarFill->setColor(forcePlayer ? color : gm->colorForIdx(gm->getPlayerColor2()));
+        if (m_progressBarFill) m_progressBarFill->setColor(forcePlayer ? gm->colorForIdx(gm->getPlayerColor2()) : color);
     };
+};
+
+float ProgressBar::getProgress() {
+    return m_progress;
 };
 
 ProgressBar* ProgressBar::create() {

@@ -19,6 +19,8 @@ public:
     // Create the custom progress bar
     static ProgressBar* create();
 
+    float m_progress = 0.f;
+
     /**
      * Update the fill of the bar
      *
@@ -33,4 +35,9 @@ public:
      * @param color RGB color object
      */
     void setBarColor(ccColor3B color);
+
+    /**
+     * Get the current progress of the bar
+     */
+    float getProgress();
 };
