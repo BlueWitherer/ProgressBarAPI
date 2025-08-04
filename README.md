@@ -10,7 +10,7 @@ For mods to easily create progress bars.
 > [<img alt="Downloads" src="https://img.shields.io/github/downloads/BlueWitherer/ProgressBarAPI/total?style=for-the-badge&logo=geode&logoColor=ffffff&label=Downloads">](https://www.geode-sdk.org/mods/cheeseworks.progressbarapi)
 
 > [!NOTE]
-> *This mod is an API for other mods to depend on, and is not intended to significantly modify the game on its own.*
+> *This mod is an API for other mods to depend on.*
 
 > [!TIP]
 > *This mod has settings you can utilize to customize your experience.*
@@ -18,7 +18,7 @@ For mods to easily create progress bars.
 ---
 
 ## About
-This mod has an API that other mod developers can use to easily create highly customizable progress bars for their own purposes.
+This mod has an API that other mod developers can use to easily create customizable progress bars for their own purposes.
 
 ---
 
