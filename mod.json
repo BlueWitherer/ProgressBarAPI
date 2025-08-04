@@ -1,0 +1,51 @@
+{
+	"geode": "4.7.0",
+	"gd": {
+		"win": "2.2074",
+		"android": "2.2074",
+		"mac": "2.2074",
+		"ios": "2.2074"
+	},
+	"id": "cheeseworks.progressbarapi",
+	"name": "Progress Bar API",
+	"version": "1.0.0",
+	"developer": "Cheeseworks",
+	"description": "For mods to easily create progress bars.",
+	"tags": [
+		"developer"
+	],
+	"dependencies": {
+		"geode.node-ids": {
+			"importance": "required",
+			"version": ">=1.21.0"
+		}
+	},
+	"links": {
+		"source": "https://github.com/BlueWitherer/ProgressBarAPI",
+		"homepage": "https://www.cheeseworks.gay/",
+		"community": "https://www.dsc.gg/cubic"
+	},
+	"issues": {
+		"info": "Report any issues to my repository!",
+		"url": "https://www.github.com/BlueWitherer/ProgressBarAPI/issues/"
+	},
+	"settings": {
+		"level": {
+			"type": "bool",
+			"name": "Modify Level Progress Bar",
+			"description": "Use this mod's own progress bar in levels.",
+			"default": true
+		},
+		"force-color": {
+			"type": "bool",
+			"name": "Force Player Color",
+			"description": "Force all progress bars created using API to use your player's color scheme.",
+			"default": false
+		}
+	},
+	"api": {
+		"include": [
+			"incl/*.hpp"
+		]
+	}
+}
