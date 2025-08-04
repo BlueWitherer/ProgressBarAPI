@@ -30,7 +30,7 @@ Here's some basic information on the classes that this mod provides. You can fin
 static ProgressBar* create(); // Create the custom progress bar
 
 void setBarColor(ccColor3B color); // Set the color of the fill of the bar
-void updateBar(float value, float time = 0.f); // Update the fill of the bar
+void updateBar(float value); // Update the fill of the bar
 
 float getProgress(); // Get the current progress of the bar
 ```
