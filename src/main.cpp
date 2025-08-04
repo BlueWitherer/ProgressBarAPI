@@ -20,11 +20,13 @@ class $modify(ProgressAPIPlayLayer, PlayLayer) {
             if (getMod()->getSettingValue<bool>("level")) {
                 log::info("Switching progress bar to API version");
 
+                // create a menu to appear on top which will just have a layout really
                 if (auto topMenu = CCMenu::create()) {
                     topMenu->setID("menu"_spr);
                     topMenu->setScaledContentSize({ 0.f, 16.f });
                     topMenu->setPosition({ getScaledContentWidth() / 2.f, getScaledContentHeight() - 8.f });
 
+                    // the layout for the menu
                     auto topMenuLayout = RowLayout::create()
                         ->setGap(5.f)
                         ->setAutoScale(true)
@@ -36,15 +38,15 @@ class $modify(ProgressAPIPlayLayer, PlayLayer) {
 
                     topMenu->setLayout(topMenuLayout);
 
-                    // set the new progress bar
+                    // assign the new progress bar
                     m_fields->m_apiProgressBar = ProgressBar::create();
                     m_fields->m_apiProgressBar->setID("my-progress-bar"_spr);
                     m_fields->m_apiProgressBar->setBarColor({ 100, 255, 125 });
 
                     topMenu->addChild(m_fields->m_apiProgressBar);
 
-                    if (auto ogProgressBar = getChildByID("progress-bar")) ogProgressBar->setVisible(false);
-                    if (auto ogPercentLabel = getChildByID("percentage-label")) ogPercentLabel->setParent(topMenu);
+                    if (auto ogProgressBar = getChildByID("progress-bar")) ogProgressBar->setVisible(false); // hide og bar
+                    if (auto ogPercentLabel = getChildByID("percentage-label")) ogPercentLabel->setParent(topMenu); // try to move the percent label
 
                     topMenu->updateLayout(true);
 

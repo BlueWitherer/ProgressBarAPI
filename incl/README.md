@@ -1,4 +1,4 @@
-# [<img src="logo.png" width="30" alt="The mod's logo." />](https://www.geode-sdk.org/mods/cheeseworks.progressbarapi) Progress Bar API
+# [<img src="../logo.png" width="30" alt="The mod's logo." />](https://www.geode-sdk.org/mods/cheeseworks.progressbarapi) Progress Bar API
 For mods to easily create progress bars.
 
 ---
@@ -27,13 +27,13 @@ class $modify(MyPlayLayer, PlayLayer) {
 ```
 
 > [!NOTE]
-> The **`ProgressBar`** class inherits directly from `CCNode`, allowing you to easily integrate it to any interface.
+> The **`ProgressBar`** class inherits directly from `CCNode`, allowing you to easily integrate it to the game's UI.
 
 Best practice is to save the progress bar node into a field in the class you're creating or modifying to work with it directly in other parts of its parent class.
 ```cpp
 class $modify(MyPlayLayer, PlayLayer) {
     struct Fields {
-        ProgressBar* m_myBar = nullptr
+        ProgressBar* m_myBar = nullptr;
     };
 
     bool init() {
@@ -50,7 +50,7 @@ class $modify(MyPlayLayer, PlayLayer) {
 
     void updateProgressbar() {
         if (m_fields->m_myBar) { // Make sure it's valid
-            auto percent = getCurrentPercent();
+            auto percent = this->getCurrentPercent();
             m_fields->m_myBar->updateBar(percent);
         };
 

@@ -17,7 +17,7 @@ This mod has an API that other mod developers can use to easily create customiza
 ### API
 Here's some basic information on the classes that this mod provides. You can find more information and code examples on the class and its fields & methods in the header file or README inside the API's folder.
 
-##### `ProgressBar` Class
+#### `ProgressBar`
 ```cpp
 static ProgressBar* create(); // Create the custom progress bar
 
