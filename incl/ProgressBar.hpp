@@ -13,7 +13,7 @@ protected:
     bool init() override;
 
 public:
-    // Create the custom progress bar
+    // Create a custom progress bar
     static ProgressBar* create();
 
     float m_progress = 0.f; // Current progress bar fill
@@ -29,14 +29,14 @@ public:
     void setBarColor(ccColor3B color);
 
     /**
-     * Update the fill of the bar
+     * Update the size of the fill of the bar
      *
-     * @param value An integer from 0 to 100
+     * @param value A float from 0 to 100
      */
     virtual void updateBar(float value);
 
     /**
-     * Get the current progress of the bar
+     * Get the current progress percentage of the bar
      */
     float getProgress();
 };

@@ -51,8 +51,6 @@ void ProgressBar::updateBar(float value) {
     if (m_progressBar && m_progressBarFill) {
         float width = m_progressBarFillMaxWidth * (m_progress / 100.f);
 
-        log::debug("Updating progress bar fill size to {}", width);
-
         m_progressBarFill->setTextureRect({ 0.f, 0.f, width, m_progressBarFillMaxHeight });
     };
 };

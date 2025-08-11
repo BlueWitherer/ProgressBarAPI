@@ -36,12 +36,6 @@
 			"name": "Modify Level Progress Bar",
 			"description": "Use this mod's own progress bar in levels. <cr>You may need to rejoin the level for this to take full effect.</cr>",
 			"default": true
-		},
-		"force-color": {
-			"type": "bool",
-			"name": "Force Player Color",
-			"description": "Force all progress bars created using API to use your player's color scheme.",
-			"default": false
 		}
 	},
 	"api": {
