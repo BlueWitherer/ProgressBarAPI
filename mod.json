@@ -12,7 +12,6 @@
 	"developer": "Cheeseworks",
 	"description": "For mods to easily create progress bars.",
 	"tags": [
-		"api",
 		"developer",
 		"offline"
 	],

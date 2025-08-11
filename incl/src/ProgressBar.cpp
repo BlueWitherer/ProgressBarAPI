@@ -8,11 +8,6 @@ bool ProgressBar::init() {
     if (CCNode::init()) {
         setID("bar"_spr);
 
-        ccColor3B defaultColor = { 255, 255, 255 };
-        auto forcePlayer = m_mod->getSettingValue<bool>("force-color");
-
-        if (auto gm = GameManager::sharedState()) forcePlayer ? defaultColor = gm->colorForIdx(gm->m_playerColor2.value()) : defaultColor;
-
         m_progressBar = CCSprite::create("slidergroove2.png");
         m_progressBar->setID("progress-bar");
         m_progressBar->setPosition({ m_progressBar->getScaledContentWidth() / 2.f, m_progressBar->getScaledContentHeight() / 2.f });
@@ -25,7 +20,11 @@ bool ProgressBar::init() {
         m_progressBarFill->setID("bar-fill");
         m_progressBarFill->setAnchorPoint({ 0, 0.5 });
         m_progressBarFill->setPosition({ 2.f, m_progressBar->getScaledContentHeight() / 2.f });
+        m_progressBarFill->setColor({ 255, 255, 255 });
         m_progressBarFill->setZOrder(-1);
+
+        m_progressBarFillMaxWidth = m_progressBar->getScaledContentWidth() - 4.f;
+        m_progressBarFillMaxHeight = m_progressBarFill->getScaledContentHeight();
 
         updateBar(0.f);
 
@@ -40,11 +39,7 @@ bool ProgressBar::init() {
 };
 
 void ProgressBar::setBarColor(ccColor3B color) {
-    if (auto gm = GameManager::sharedState()) {
-        auto forcePlayer = m_mod->getSettingValue<bool>("force-color");
-
-        if (m_progressBarFill) m_progressBarFill->setColor(forcePlayer ? gm->colorForIdx(gm->getPlayerColor2()) : color);
-    };
+    if (m_progressBarFill) m_progressBarFill->setColor(color);
 };
 
 void ProgressBar::updateBar(float value) {
@@ -54,12 +49,11 @@ void ProgressBar::updateBar(float value) {
     m_progress = value;
 
     if (m_progressBar && m_progressBarFill) {
-        float max = m_progressBar->getScaledContentWidth() - 4.f;
-        float width = max * (m_progress / 100.f);
+        float width = m_progressBarFillMaxWidth * (m_progress / 100.f);
 
         log::debug("Updating progress bar fill size to {}", width);
 
-        m_progressBarFill->setTextureRect({ 0.f, 0.f, width, 8.f });
+        m_progressBarFill->setTextureRect({ 0.f, 0.f, width, m_progressBarFillMaxHeight });
     };
 };
 

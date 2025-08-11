@@ -2,14 +2,11 @@
 
 #include <Geode/Geode.hpp>
 
-#include <Geode/utils/terminate.hpp>
-
 using namespace geode::prelude;
 
+// Custom progress bar class
 class ProgressBar : public CCNode {
 protected:
-    Mod* m_mod = getMod(); // Progress Bar API
-
     Ref<CCSprite> m_progressBar = nullptr; // Progress bar outline
     CCSprite* m_progressBarFill = nullptr; // Progress bar fill
 
@@ -20,6 +17,9 @@ public:
     static ProgressBar* create();
 
     float m_progress = 0.f; // Current progress bar fill
+
+    float m_progressBarFillMaxWidth = 0.f; // Max width for the progress fill bar node
+    float m_progressBarFillMaxHeight = 0.f; // Max height for the progress fill bar node
 
     /**
      * Set the color of the fill of the bar
@@ -33,7 +33,7 @@ public:
      *
      * @param value An integer from 0 to 100
      */
-    void updateBar(float value);
+    virtual void updateBar(float value);
 
     /**
      * Get the current progress of the bar

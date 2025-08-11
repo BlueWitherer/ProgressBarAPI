@@ -1,6 +1,7 @@
 #include <cmath>
 
 #include <ProgressBar.hpp>
+#include <ProgressBarSolid.hpp>
 
 #include <Geode/Geode.hpp>
 
@@ -13,79 +14,85 @@ using namespace geode::prelude;
 class $modify(ProgressAPIPlayLayer, PlayLayer) {
     struct Fields {
         ProgressBar* m_apiProgressBar = nullptr;
+        ProgressBarSolid* m_apiProgressBarSolid = nullptr;
     };
 
-    bool init(GJGameLevel * level, bool useReplay, bool dontCreateObjects) {
-        if (PlayLayer::init(level, useReplay, dontCreateObjects)) {
-            if (getMod()->getSettingValue<bool>("level")) {
-                log::info("Switching progress bar to API version");
+    void setupHasCompleted() {
+        PlayLayer::setupHasCompleted();
 
-                if (auto ogProgressBar = getChildByID("progress-bar")) {
-                    log::debug("Replacing original progress bar");
+        if (getMod()->getSettingValue<bool>("level")) {
+            log::info("Switching progress bar to API version");
 
-                    // create a menu to appear on top which will just have a layout really
-                    if (auto topMenu = CCMenu::create()) {
-                        topMenu->setID("menu"_spr);
-                        topMenu->setScaledContentSize({ 0.f, 16.f });
-                        topMenu->setPosition({ getScaledContentWidth() / 2.f, getScaledContentHeight() - 8.f });
-                        topMenu->setZOrder(101);
+            if (auto ogProgressBar = getChildByID("progress-bar")) {
+                log::debug("Replacing original progress bar");
 
-                        // the layout for the menu
-                        auto topMenuLayout = RowLayout::create()
-                            ->setGap(5.f)
-                            ->setAutoScale(true)
-                            ->setAutoGrowAxis(0.f)
-                            ->setAxisAlignment(AxisAlignment::Center)
-                            ->setCrossAxisAlignment(AxisAlignment::Center)
-                            ->setCrossAxisLineAlignment(AxisAlignment::Center)
-                            ->setAxisReverse(false);
+                // create a menu to appear on top which will just have a layout really
+                if (auto topMenu = CCMenu::create()) {
+                    topMenu->setID("menu"_spr);
+                    topMenu->setScaledContentSize({ 0.f, 16.f });
+                    topMenu->setPosition({ getScaledContentWidth() / 2.f, getScaledContentHeight() - 8.f });
+                    topMenu->setZOrder(101);
 
-                        topMenu->setLayout(topMenuLayout);
+                    // the layout for the menu
+                    auto topMenuLayout = RowLayout::create()
+                        ->setGap(5.f)
+                        ->setAutoScale(true)
+                        ->setAutoGrowAxis(0.f)
+                        ->setAxisAlignment(AxisAlignment::Center)
+                        ->setCrossAxisAlignment(AxisAlignment::Center)
+                        ->setCrossAxisLineAlignment(AxisAlignment::Center)
+                        ->setAxisReverse(false);
 
-                        // assign the new progress bar
-                        m_fields->m_apiProgressBar = ProgressBar::create();
-                        m_fields->m_apiProgressBar->setID("my-progress-bar"_spr);
-                        m_fields->m_apiProgressBar->setBarColor({ 100, 255, 125 });
-                        m_fields->m_apiProgressBar->setVisible(ogProgressBar->isVisible());
+                    topMenu->setLayout(topMenuLayout);
 
-                        topMenu->addChild(m_fields->m_apiProgressBar);
+                    // assign the new progress bar
+                    m_fields->m_apiProgressBar = ProgressBar::create();
+                    m_fields->m_apiProgressBar->setID("my-progress-bar"_spr);
+                    m_fields->m_apiProgressBar->setBarColor({ 100, 255, 125 });
+                    m_fields->m_apiProgressBar->setVisible(ogProgressBar->isVisible());
 
-                        if (auto ogPercentLabel = getChildByID("percentage-label")) ogPercentLabel->setParent(topMenu); // try to move the percent label
+                    topMenu->addChild(m_fields->m_apiProgressBar);
 
-                        topMenu->updateLayout(true);
+                    // assign the new progress bar
+                    m_fields->m_apiProgressBarSolid = ProgressBarSolid::create();
+                    m_fields->m_apiProgressBarSolid->setID("my-solid-progress-bar"_spr);
+                    m_fields->m_apiProgressBarSolid->setBarColor({ 100, 255, 125 });
+                    m_fields->m_apiProgressBarSolid->setVisible(ogProgressBar->isVisible());
 
-                        addChild(topMenu);
+                    topMenu->addChild(m_fields->m_apiProgressBarSolid);
 
-                        ogProgressBar->setVisible(false); // hide og bar
-                    } else {
-                        log::error("Failed to create new progress bar");
-                    };
+                    if (auto ogPercentLabel = getChildByID("percentage-label")) ogPercentLabel->setParent(topMenu); // try to move the percent label
+
+                    topMenu->updateLayout(true);
+
+                    addChild(topMenu);
+
+                    ogProgressBar->setVisible(false); // hide og bar
                 } else {
-                    log::warn("No progress bar found to replace");
+                    log::error("Failed to create new progress bar");
                 };
             } else {
-                log::debug("Keeping vanilla progress bar");
+                log::warn("No progress bar found to replace");
             };
-
-            return true;
         } else {
-            return false;
+            log::debug("Keeping vanilla progress bar");
         };
     };
 
     void updateProgressbar() {
-        if (m_fields->m_apiProgressBar) {
-            auto percent = getCurrentPercent();
-            log::debug("Updating API progress bar to {}%", percent);
+        auto percent = getCurrentPercent();
+        log::debug("Updating API progress bar to {}%", percent);
 
-            m_fields->m_apiProgressBar->updateBar(percent);
-        };
+        if (m_fields->m_apiProgressBar) m_fields->m_apiProgressBar->updateBar(percent);
+        if (m_fields->m_apiProgressBarSolid) m_fields->m_apiProgressBarSolid->updateBar(percent);
 
         PlayLayer::updateProgressbar();
     };
 
     void toggleProgressbar() {
         if (m_fields->m_apiProgressBar) m_fields->m_apiProgressBar->setVisible(!m_fields->m_apiProgressBar->isVisible());
+        if (m_fields->m_apiProgressBarSolid) m_fields->m_apiProgressBarSolid->setVisible(!m_fields->m_apiProgressBarSolid->isVisible());
+
         PlayLayer::toggleProgressbar();
     };
 };
