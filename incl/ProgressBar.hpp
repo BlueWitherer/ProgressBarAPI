@@ -4,7 +4,7 @@
 
 using namespace geode::prelude;
 
-// Custom progress bar class
+// Custom class for the progress bar
 class ProgressBar : public CCNode {
 protected:
     Ref<CCSprite> m_progressBar = nullptr; // Progress bar outline

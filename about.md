@@ -1,6 +1,8 @@
 # Progress Bar API
 **For mods to easily create progress bars.**
 
+> ![icon](frame:geode.loader/info-warning.png?scale=0.375) <cy>*This mod is no longer being maintained.*</c>
+
 *by* ***[Cheeseworks](user:6408873)****!*
 
 > ![icon](frame:GJ_infoIcon_001.png?scale=0.5) <cj>*This mod is an API for other mods to depend on.*</c>

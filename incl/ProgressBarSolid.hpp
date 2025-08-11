@@ -1,11 +1,12 @@
 #pragma once
 
-#include <ProgressBar.hpp>
+#include "ProgressBar.hpp"
 
 #include <Geode/Geode.hpp>
 
 using namespace geode::prelude;
 
+// Custom class for the Normal/Practice mode style progress bar
 class ProgressBarSolid : public ProgressBar {
 protected:
     bool init() override;

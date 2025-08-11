@@ -5,37 +5,34 @@
 using namespace geode::prelude;
 
 bool ProgressBar::init() {
-    if (CCNode::init()) {
-        setID("bar"_spr);
+    if (!CCNode::init()) return false;
 
-        m_progressBar = CCSprite::create("slidergroove2.png");
-        m_progressBar->setID("progress-bar");
-        m_progressBar->setPosition({ m_progressBar->getScaledContentWidth() / 2.f, m_progressBar->getScaledContentHeight() / 2.f });
-        m_progressBar->setAnchorPoint({ 0.5, 0.5 });
-        m_progressBar->setZOrder(501);
+    this->setID("bar"_spr);
 
-        setScaledContentSize(m_progressBar->getScaledContentSize());
+    m_progressBar = CCSprite::create("slidergroove2.png");
+    m_progressBar->setID("progress-bar");
+    m_progressBar->setPosition({ m_progressBar->getScaledContentWidth() / 2.f, m_progressBar->getScaledContentHeight() / 2.f });
+    m_progressBar->setAnchorPoint({ 0.5, 0.5 });
+    m_progressBar->setZOrder(501);
 
-        m_progressBarFill = CCSprite::create("sliderBar2.png");
-        m_progressBarFill->setID("bar-fill");
-        m_progressBarFill->setAnchorPoint({ 0, 0.5 });
-        m_progressBarFill->setPosition({ 2.f, m_progressBar->getScaledContentHeight() / 2.f });
-        m_progressBarFill->setColor({ 255, 255, 255 });
-        m_progressBarFill->setZOrder(-1);
+    this->setScaledContentSize(m_progressBar->getScaledContentSize());
 
-        m_progressBarFillMaxWidth = m_progressBar->getScaledContentWidth() - 4.f;
-        m_progressBarFillMaxHeight = m_progressBarFill->getScaledContentHeight();
+    m_progressBarFill = CCSprite::create("sliderBar2.png");
+    m_progressBarFill->setID("bar-fill");
+    m_progressBarFill->setAnchorPoint({ 0, 0.5 });
+    m_progressBarFill->setPosition({ 2.f, m_progressBar->getScaledContentHeight() / 2.f });
+    m_progressBarFill->setColor({ 255, 255, 255 });
+    m_progressBarFill->setZOrder(-1);
 
-        updateBar(0.f);
+    m_progressBarFillMaxWidth = m_progressBar->getScaledContentWidth() - 4.f;
+    m_progressBarFillMaxHeight = m_progressBarFill->getScaledContentHeight();
 
-        m_progressBar->addChild(m_progressBarFill);
+    m_progressBar->addChild(m_progressBarFill);
 
-        addChild(m_progressBar);
+    this->addChild(m_progressBar);
+    this->updateBar(0.0f);
 
-        return true;
-    } else {
-        return false;
-    };
+    return true;
 };
 
 void ProgressBar::setBarColor(ccColor3B color) {
@@ -43,14 +40,13 @@ void ProgressBar::setBarColor(ccColor3B color) {
 };
 
 void ProgressBar::updateBar(float value) {
-    if (value > 100.f) value = 100.f;
-    if (value < 0.f) value = 0.f;
+    if (value > 100.0f) value = 100.0f;
+    if (value < 0.0f) value = 0.0f;
 
     m_progress = value;
 
     if (m_progressBar && m_progressBarFill) {
         float width = m_progressBarFillMaxWidth * (m_progress / 100.f);
-
         m_progressBarFill->setTextureRect({ 0.f, 0.f, width, m_progressBarFillMaxHeight });
     };
 };
