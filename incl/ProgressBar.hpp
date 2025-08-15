@@ -10,6 +10,9 @@ protected:
     Ref<CCSprite> m_progressBar = nullptr; // Progress bar outline
     CCSprite* m_progressBarFill = nullptr; // Progress bar fill
 
+    float m_progressBarFillMaxWidth = 0.f; // Max width for the progress fill bar node
+    float m_progressBarFillMaxHeight = 0.f; // Max height for the progress fill bar node
+
     bool init() override;
 
 public:
@@ -17,9 +20,6 @@ public:
     static ProgressBar* create();
 
     float m_progress = 0.f; // Current progress bar fill
-
-    float m_progressBarFillMaxWidth = 0.f; // Max width for the progress fill bar node
-    float m_progressBarFillMaxHeight = 0.f; // Max height for the progress fill bar node
 
     /**
      * Set the color of the fill of the bar
