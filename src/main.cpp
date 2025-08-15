@@ -80,13 +80,13 @@ class $modify(ProgressAPIPlayLayer, PlayLayer) {
     };
 
     void updateProgressbar() {
+        PlayLayer::updateProgressbar();
+
         auto percent = getCurrentPercent();
         log::debug("Updating API progress bar to {}%", percent);
 
         if (m_fields->m_apiProgressBar) m_fields->m_apiProgressBar->updateProgress(percent);
         if (m_fields->m_apiProgressBarSolid) m_fields->m_apiProgressBarSolid->updateProgress(percent);
-
-        PlayLayer::updateProgressbar();
     };
 
     void toggleProgressbar() {
