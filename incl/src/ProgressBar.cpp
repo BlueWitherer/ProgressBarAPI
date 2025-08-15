@@ -30,16 +30,16 @@ bool ProgressBar::init() {
     m_progressBar->addChild(m_progressBarFill);
 
     this->addChild(m_progressBar);
-    this->updateBar(0.0f);
+    this->updateProgress(0.0f);
 
     return true;
 };
 
-void ProgressBar::setBarColor(ccColor3B color) {
+void ProgressBar::setProgressBarFillColor(ccColor3B color) {
     if (m_progressBarFill) m_progressBarFill->setColor(color);
 };
 
-void ProgressBar::updateBar(float value) {
+void ProgressBar::updateProgress(float value) {
     if (value > 100.0f) value = 100.0f;
     if (value < 0.0f) value = 0.0f;
 

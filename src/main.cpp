@@ -48,7 +48,7 @@ class $modify(ProgressAPIPlayLayer, PlayLayer) {
                     // assign the new progress bar
                     m_fields->m_apiProgressBar = ProgressBar::create();
                     m_fields->m_apiProgressBar->setID("my-progress-bar"_spr);
-                    m_fields->m_apiProgressBar->setBarColor({ 100, 255, 125 });
+                    m_fields->m_apiProgressBar->setProgressBarFillColor({ 100, 255, 125 });
                     m_fields->m_apiProgressBar->setVisible(ogProgressBar->isVisible());
 
                     topMenu->addChild(m_fields->m_apiProgressBar);
@@ -56,7 +56,7 @@ class $modify(ProgressAPIPlayLayer, PlayLayer) {
                     // assign the new progress bar
                     m_fields->m_apiProgressBarSolid = ProgressBarSolid::create();
                     m_fields->m_apiProgressBarSolid->setID("my-solid-progress-bar"_spr);
-                    m_fields->m_apiProgressBarSolid->setBarColor({ 100, 255, 125 });
+                    m_fields->m_apiProgressBarSolid->setProgressBarFillColor({ 100, 255, 125 });
                     m_fields->m_apiProgressBarSolid->setVisible(ogProgressBar->isVisible());
 
                     topMenu->addChild(m_fields->m_apiProgressBarSolid);
@@ -83,16 +83,18 @@ class $modify(ProgressAPIPlayLayer, PlayLayer) {
         auto percent = getCurrentPercent();
         log::debug("Updating API progress bar to {}%", percent);
 
-        if (m_fields->m_apiProgressBar) m_fields->m_apiProgressBar->updateBar(percent);
-        if (m_fields->m_apiProgressBarSolid) m_fields->m_apiProgressBarSolid->updateBar(percent);
+        if (m_fields->m_apiProgressBar) m_fields->m_apiProgressBar->updateProgress(percent);
+        if (m_fields->m_apiProgressBarSolid) m_fields->m_apiProgressBarSolid->updateProgress(percent);
 
         PlayLayer::updateProgressbar();
     };
 
     void toggleProgressbar() {
-        if (m_fields->m_apiProgressBar) m_fields->m_apiProgressBar->setVisible(!m_fields->m_apiProgressBar->isVisible());
-        if (m_fields->m_apiProgressBarSolid) m_fields->m_apiProgressBarSolid->setVisible(!m_fields->m_apiProgressBarSolid->isVisible());
-
         PlayLayer::toggleProgressbar();
+
+        auto isVisible = m_progressBar->isVisible();
+
+        if (m_fields->m_apiProgressBar) m_fields->m_apiProgressBar->setVisible(isVisible);
+        if (m_fields->m_apiProgressBarSolid) m_fields->m_apiProgressBarSolid->setVisible(isVisible);
     };
 };

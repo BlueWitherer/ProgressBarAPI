@@ -36,7 +36,7 @@ bool ProgressBarSolid::init() {
     m_progressBar->addChild(m_progressBarFill);
 
     this->addChild(m_progressBar);
-    this->updateBar(0.0f);
+    this->updateProgress(0.0f);
 
     m_progressPercentLabel = CCLabelBMFont::create("0%", "bigFont.fnt");
     m_progressPercentLabel->setID("percent-label");
@@ -50,13 +50,17 @@ bool ProgressBarSolid::init() {
     return true;
 };
 
-void ProgressBarSolid::updateBar(float value) {
-    ProgressBar::updateBar(value);
+void ProgressBarSolid::updateProgress(float value) {
+    ProgressBar::updateProgress(value);
 
     if (m_progressPercentLabel) {
         auto percentString = fmt::format("{}%", static_cast<int>(m_progress));
         m_progressPercentLabel->setCString(percentString.c_str());
     };
+};
+
+CCLabelBMFont* ProgressBarSolid::getProgressLabel() {
+    return m_progressPercentLabel;
 };
 
 ProgressBarSolid* ProgressBarSolid::create() {

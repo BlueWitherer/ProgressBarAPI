@@ -18,7 +18,7 @@ class $modify(MyPlayLayer, PlayLayer) {
         // Create a shiny brand new progress bar
         auto myBar = ProgressBar::create();
         myBar->setID("my-progress-bar"_spr);
-        myBar->setBarColor({ 100, 255, 125 });
+        myBar->setProgressBarFillColor({ 100, 255, 125 });
         myBar->setPosition({ 200.f, 125.f });
 
         this->addChild(myBar);
@@ -42,7 +42,7 @@ class $modify(MyPlayLayer, PlayLayer) {
         // Assign a new progress bar
         m_fields->m_myBar = ProgressBar::create();
         m_fields->m_myBar->setID("my-progress-bar"_spr);
-        m_fields->m_myBar->setBarColor({ 100, 255, 125 });
+        m_fields->m_myBar->setProgressBarFillColor({ 100, 255, 125 });
         m_fields->m_myBar->setPosition({ 200.f, 125.f });
 
         this->addChild(m_fields->m_myBar);
@@ -51,7 +51,7 @@ class $modify(MyPlayLayer, PlayLayer) {
     void updateProgressbar() {
         if (m_fields->m_myBar) { // Make sure it's valid
             auto percent = this->getCurrentPercent();
-            m_fields->m_myBar->updateBar(percent);
+            m_fields->m_myBar->updateProgress(percent);
         };
 
         PlayLayer::updateProgressbar();

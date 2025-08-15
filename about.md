@@ -23,8 +23,8 @@ Here's some basic information on the classes that this mod provides. You can fin
 ```cpp
 static ProgressBar* create(); // Create the custom progress bar
 
-void setBarColor(ccColor3B color); // Set the color of the fill of the bar
-void updateBar(float value); // Update the fill of the bar
+void setProgressBarFillColor(ccColor3B color); // Set the color of the fill of the bar
+void updateProgress(float value); // Update the fill of the bar
 
 float getProgress(); // Get the current progress of the bar
 ```
