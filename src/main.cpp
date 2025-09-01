@@ -17,7 +17,8 @@ class $modify(ProgressAPIMenuLayer, MenuLayer) {
         testb->setID("my-bar"_spr);
         testb->updateProgress(65.f);
         testb->setPosition({ 100.f, 100.f });
-        testb->setStyle(ProgressBarStyle::Solid);
+        testb->setStyle(ProgressBarStyle::Level);
+        testb->showProgressLabel(true);
 
         addChild(testb);
 
