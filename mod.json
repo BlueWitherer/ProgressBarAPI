@@ -1,5 +1,5 @@
 {
-	"geode": "4.7.0",
+	"geode": "4.8.0",
 	"gd": {
 		"win": "2.2074",
 		"android": "2.2074",
@@ -8,10 +8,11 @@
 	},
 	"id": "cheeseworks.progressbarapi",
 	"name": "Progress Bar API",
-	"version": "1.0.0",
+	"version": "2.0.0",
 	"developer": "Cheeseworks",
-	"description": "For mods to easily create progress bars.",
+	"description": "A better way to work with progress bars.",
 	"tags": [
+		"api",
 		"developer",
 		"offline"
 	],
@@ -29,14 +30,6 @@
 	"issues": {
 		"info": "Report any issues to my repository!",
 		"url": "https://www.github.com/BlueWitherer/ProgressBarAPI/issues/"
-	},
-	"settings": {
-		"level": {
-			"type": "bool",
-			"name": "Modify Level Progress Bar",
-			"description": "Use this mod's own progress bar in levels. <cr>You may need to rejoin the level for this to take full effect.</cr>",
-			"default": true
-		}
 	},
 	"api": {
 		"include": [

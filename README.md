@@ -1,8 +1,5 @@
 # [<img src="logo.png" width="30" alt="The mod's logo." />](https://www.geode-sdk.org/mods/cheeseworks.progressbarapi) Progress Bar API
-For mods to easily create progress bars.
-
-> [!WARNING]
-> *This mod is no longer being maintained.*
+A better way to work with progress bars.
 
 ---
 
@@ -15,9 +12,6 @@ For mods to easily create progress bars.
 > [!NOTE]
 > *This mod is an API for other mods to depend on.*
 
-> [!TIP]
-> *This mod has settings you can utilize to customize your experience.*
-
 ---
 
 ## About
@@ -27,15 +21,6 @@ This mod has an API that other mod developers can use to easily create customiza
 
 ### API
 Here's some basic information on the classes that this mod provides. You can find more information and code examples on the class and its fields & methods in the header file or README inside the API's folder.
-
-#### `ProgressBar`
-```cpp
-static ProgressBar* create(); // Create the custom progress bar
-
-void setProgressBarFillColor(ccColor3B color); // Set the color of the fill of the bar
-void updateProgress(float value); // Update the fill of the bar
-
-float getProgress(); // Get the current progress of the bar
 ```
 
 ---
