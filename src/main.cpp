@@ -4,27 +4,9 @@
 
 #include <Geode/Geode.hpp>
 
-#include <Geode/modify/MenuLayer.hpp>
 #include <Geode/modify/PlayLayer.hpp>
 
 using namespace geode::prelude;
-
-class $modify(ProgressAPIMenuLayer, MenuLayer) {
-    bool init() {
-        if (!MenuLayer::init()) return false;
-
-        auto testb = ProgressBar::create();
-        testb->setID("my-bar"_spr);
-        testb->updateProgress(65.f);
-        testb->setPosition({ 100.f, 100.f });
-        testb->setStyle(ProgressBarStyle::Level);
-        testb->showProgressLabel(true);
-
-        addChild(testb);
-
-        return true;
-    };
-};
 
 class $modify(ProgressAPIPlayLayer, PlayLayer) {
     struct Fields {
