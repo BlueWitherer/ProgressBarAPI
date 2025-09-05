@@ -18,7 +18,7 @@ class $modify(ProgressAPIPlayLayer, PlayLayer) {
     void setupHasCompleted() {
         PlayLayer::setupHasCompleted();
 
-        m_fields->m_isBarVisible = m_progressBar->isVisible();
+        m_fields->m_isBarVisible = !m_progressBar->isVisible(); // toggleProgressbar() will fire once after setup
 
         log::info("Switching progress bar to API version");
 
@@ -27,8 +27,9 @@ class $modify(ProgressAPIPlayLayer, PlayLayer) {
         m_fields->m_apiProgressBar->setID("progress-bar"_spr);
         m_fields->m_apiProgressBar->setAnchorPoint({ 0.5, 0.5 });
         m_fields->m_apiProgressBar->setPosition({ getScaledContentWidth() / 2.f, getScaledContentHeight() - 8.f });
-        m_fields->m_apiProgressBar->setProgressBarFillColor(m_progressFill->getColor());
+        m_fields->m_apiProgressBar->setFillColor(m_progressFill->getColor());
         m_fields->m_apiProgressBar->setVisible(m_fields->m_isBarVisible);
+        m_fields->m_apiProgressBar->setZOrder(1);
 
         addChild(m_fields->m_apiProgressBar);
 
@@ -39,7 +40,6 @@ class $modify(ProgressAPIPlayLayer, PlayLayer) {
         PlayLayer::updateProgressbar();
 
         auto percent = getCurrentPercent();
-
         if (m_fields->m_apiProgressBar) m_fields->m_apiProgressBar->updateProgress(percent);
     };
 
