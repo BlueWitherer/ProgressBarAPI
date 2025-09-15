@@ -35,4 +35,4 @@ Here's some basic information on the classes that this mod provides. You can fin
 
 ### Development
 ###### Work with the mod directly.
-**[⌨️ Check the API out](./incl/)**
+**[⌨️ Check the API out](./include/)**

@@ -9,7 +9,9 @@
 	"id": "cheeseworks.progressbarapi",
 	"name": "Progress Bar API",
 	"version": "2.0.0",
-	"developer": "Cheeseworks",
+	"developers": [
+		"Cheeseworks"
+	],
 	"description": "A better way to work with progress bars.",
 	"tags": [
 		"api",
@@ -30,11 +32,6 @@
 	"issues": {
 		"info": "Report any issues to my repository!",
 		"url": "https://www.github.com/BlueWitherer/ProgressBarAPI/issues/"
-	},
-	"api": {
-		"include": [
-			"incl/*.hpp"
-		]
 	},
 	"early-load": false
 }

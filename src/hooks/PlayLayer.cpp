@@ -1,6 +1,4 @@
-#include <cmath>
-
-#include "../incl/ProgressBar.hpp"
+#include "../ProgressBar.hpp"
 
 #include <Geode/Geode.hpp>
 
