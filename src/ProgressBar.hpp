@@ -4,74 +4,94 @@
 
 using namespace geode::prelude;
 
-// Enum for progress bar style
-enum class ProgressBarStyle {
-    Level = 0,
-    Solid = 1,
-};
+namespace geode {
+    // Enum for progress bar style
+    enum class ProgressBarStyle {
+        Level = 0,
+        Solid = 1,
+    };
 
-// Custom class for the progress bar
-class ProgressBar : public cocos2d::CCNode {
-protected:
-    class Impl;
-    std::unique_ptr<Impl> m_impl;
+    // Custom class for the progress bar
+    class ProgressBar : public cocos2d::CCNode {
+    protected:
+        class Impl;
+        std::unique_ptr<Impl> m_impl;
 
-    ProgressBar();
-    ~ProgressBar();
+        ProgressBar();
+        virtual ~ProgressBar();
 
-    void customSetup();
+        // Reloads the style of the progress bar
+        void reloadStyle();
 
-    bool init() override;
+        // Reloads the progress bar fill size
+        void reloadProgressBar();
+        // Reloads the percentage label text
+        void reloadPercentLabel();
 
-public:
-    // Create a custom progress bar
-    static ProgressBar* create();
+        bool init() override;
 
-    /**
-     * Set the style of the progress bar
-     *
-     * @param style Style to switch to
-     */
-    void setStyle(ProgressBarStyle style);
+    public:
+        // Create a custom progress bar
+        static ProgressBar* create();
 
-    /**
-     * Set the color of the fill of the bar
-     *
-     * @param color RGB color object
-     */
-    void setFillColor(ccColor3B color);
+        /**
+         * Set the style of the progress bar
+         *
+         * @param style Style to switch to
+         */
+        void setStyle(ProgressBarStyle style);
 
-    /**
-     * Update the size of the fill of the bar
-     *
-     * @param value A float from 0 to 100
-     */
-    virtual void updateProgress(float value);
+        /**
+         * Set the color of the fill of the bar
+         *
+         * @param color RGB color object
+         */
+        void setFillColor(ccColor3B color);
 
-    /**
-     * Show the label displaying the current percentage of progress
-     *
-     * @param bool Whether to toggle visibility
-     */
-    void showProgressLabel(bool show);
+        /**
+         * Set the precision of the progress percentage label
+         *
+         * @param precision Number of decimal places to show in the percentage label
+         */
+        void setPrecision(size_t precision);
 
-    /**
-     * Get the current progress percentage of the bar
-     */
-    float getProgress() const;
+        /**
+         * Update the size of the fill of the bar
+         *
+         * @param value A float from 0 to 100
+         */
+        virtual void updateProgress(float value);
 
-    /**
-     * Get the progress percentage text label node
-     */
-    CCLabelBMFont* getProgressLabel() const;
+        /**
+         * Show the label displaying the current percentage of progress
+         *
+         * @param bool Whether to toggle visibility
+         */
+        void showProgressLabel(bool show);
 
-    /**
-     * Get the current style of the progress bar
-     */
-    ProgressBarStyle getStyle() const;
+        /**
+         * Get the current progress percentage of the bar
+         */
+        float getProgress() const;
 
-    /**
-     * Get the current color of the fill of the progress bar
-     */
-    ccColor3B getFillColor() const;
+        /**
+         * Get the progress percentage text label node
+         */
+        CCLabelBMFont* getProgressLabel() const;
+
+        /**
+         * Get the current style of the progress bar
+         */
+        ProgressBarStyle getStyle() const;
+
+        /**
+         * Get the current color of the fill of the progress bar
+         */
+        ccColor3B getFillColor() const;
+
+        /**
+         * Get the current precision of the percentage label
+         */
+        size_t getPrecision() const;
+    };
 };

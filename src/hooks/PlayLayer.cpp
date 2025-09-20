@@ -27,6 +27,7 @@ class $modify(ProgressAPIPlayLayer, PlayLayer) {
         m_fields->m_apiProgressBar->setPosition({ getScaledContentWidth() / 2.f, getScaledContentHeight() - 8.f });
         m_fields->m_apiProgressBar->setFillColor(m_progressFill->getColor());
         m_fields->m_apiProgressBar->setVisible(m_fields->m_isBarVisible);
+        m_fields->m_apiProgressBar->setPrecision(2);
         m_fields->m_apiProgressBar->setZOrder(1);
 
         addChild(m_fields->m_apiProgressBar);
